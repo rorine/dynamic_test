@@ -1,0 +1,25 @@
+{
+  "name": "luna-script",
+  "version": "1.0.0",
+  "description": "dynamic testing scripts",
+  "private": true,
+  "main": "agent/android.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "frida-compile agent/android.ts -o _android.js -c && frida-compile agent/ios.ts -o _ios.js -c",
+    "watch": "frida-compile agent/android.ts -o _android.js -w && frida-compile agent/ios.ts -o _ios.js -w",
+    "test_android": "python runner.py android",
+    "test_ios": "python runner.py ios"
+  },
+  "devDependencies": {
+    "@frida/assert": "^3.0.2",
+    "@types/frida-gum": "^18.2.0",
+    "@types/node": "^18.11.9",
+    "frida-compile": "^16.1.0"
+  },
+  "dependencies": {
+    "@frida/assert": "^3.0.2",
+    "@frida/http": "^4.0.2",
+    "frida-swift-bridge": "^2.0.6"
+  }
+}
